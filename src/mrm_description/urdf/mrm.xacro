@@ -1,0 +1,191 @@
+<?xml version="1.0" ?>
+
+<robot name="mrm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <!-- BGN - Include -->
+  <xacro:include filename="$(find mrm_description)/urdf/robot_parameters.xacro" />
+  <xacro:include filename="$(find mrm_description)/urdf/links_joints.xacro" />
+  <!-- END - Include -->
+  
+  <!-- BGN - Robot description -->
+  <m_link_box name="${link_00_name}"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="1024"
+              ixx="170.667" ixy="0" ixz="0"
+              iyy="170.667" iyz="0"
+              izz="170.667"
+              size="1 1 1" />
+              
+  <m_joint name="${link_00_name}__${link_01_name}" type="revolute"
+           axis_xyz="0 0 1"
+           origin_rpy="0 0 0" origin_xyz="0 0 0.5"
+           parent="base_link" child="link_01"
+           limit_e="100000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
+           
+  <m_link_mesh name="${link_01_name}"
+              origin_rpy="0 0 0" origin_xyz="0 0 -0.1"
+              mass="157.633"
+              ixx="13.235" ixy="0" ixz="0"
+              iyy="13.235" iyz="0"
+              izz="9.655"
+              meshfile="package://mrm_description/meshes/Link1-v2.stl"
+              meshscale="0.001 0.001 0.001" />
+  
+              
+  <m_joint name="${link_01_name}__${link_02_name}" type="revolute"
+           axis_xyz="0 1 0"
+           origin_rpy="0 0 0" origin_xyz="0 0 0.4"
+           parent="link_01" child="link_02"
+           limit_e="100000" limit_l="0" limit_u="1" limit_v="0.5" />
+
+  <m_link_mesh name="${link_02_name}"
+              origin_rpy="0 -1.570792 3.141594" origin_xyz="0 0 -0.6"
+              mass="157.633"
+              ixx="13.235" ixy="0" ixz="0"
+              iyy="13.235" iyz="0"
+              izz="9.655"
+              meshfile="package://mrm_description/meshes/upper_arm.stl"
+              meshscale="3.2 2 2" />
+
+  <!--m_link_cylinder name="${link_02_name}"
+              origin_rpy="0 0 0" origin_xyz="0 0 0.4"
+              mass="57.906"
+              ixx="12.679" ixy="0" ixz="0"
+              iyy="12.679" iyz="0"
+              izz="0.651"
+              radius="0.15" length="0.8" /-->
+              
+  <m_joint name="${link_02_name}__${link_03_name}" type="revolute"
+           axis_xyz="0 1 0"
+           origin_rpy="0 0 0" origin_xyz="0 0 1"
+           parent="link_02" child="link_03"
+           limit_e="100000" limit_l="0" limit_u="1" limit_v="0.5" />
+
+  <m_link_mesh name="${link_03_name}"
+              origin_rpy="0 -1.570792 3.141594" origin_xyz="0 0 -0.5"
+              mass="157.633"
+              ixx="13.235" ixy="0" ixz="0"
+              iyy="13.235" iyz="0"
+              izz="9.655"
+              meshfile="package://mrm_description/meshes/forearm.stl"
+              meshscale="3.5 2 2" />
+
+  <!--m_link_cylinder name="${link_03_name}"
+              origin_rpy="0 0 0" origin_xyz="0 0 0.4"
+              mass="57.906"
+              ixx="12.679" ixy="0" ixz="0"
+              iyy="12.679" iyz="0"
+              izz="0.651"
+              radius="0.15" length="0.8" /-->
+              
+  <m_joint name="${link_03_name}__${link_04_name}" type="revolute"
+           axis_xyz="0 1 0"
+           origin_rpy="0 0 0" origin_xyz="0 0 0.65"
+           parent="link_03" child="link_04"
+           limit_e="100000" limit_l="0" limit_u="1" limit_v="0.5" />
+
+  <!--m_link_mesh name="${link_04_name}"
+              origin_rpy="0 -1.570792 3.141594" origin_xyz="0 0 -0.5"
+              mass="157.633"
+              ixx="13.235" ixy="0" ixz="0"
+              iyy="13.235" iyz="0"
+              izz="9.655"
+              meshfile="package://mrm_description/meshes/forearm.stl"
+              meshscale="3.5 2 2" /-->
+
+  <m_link_cylinder name="${link_04_name}"
+              origin_rpy="0 0 0" origin_xyz="0 0 0.2"
+              mass="18.056"
+              ixx="0.479" ixy="0" ixz="0"
+              iyy="0.479" iyz="0"
+              izz="0.204"
+              radius="0.09" length="0.4" />
+              
+  <m_joint name="${link_04_name}__${link_05_name}" type="prismatic"
+           axis_xyz="0 0 1"
+           origin_rpy="0 0 0" origin_xyz="0 0 0"
+           parent="link_04" child="link_05"
+           limit_e="100000" limit_l="0" limit_u="0.35" limit_v="0.5" />
+
+  <!--m_link_mesh name="${link_05_name}"
+              origin_rpy="0 -1.570792 3.141594" origin_xyz="0 0 -0.5"
+              mass="157.633"
+              ixx="13.235" ixy="0" ixz="0"
+              iyy="13.235" iyz="0"
+              izz="9.655"
+              meshfile="package://mrm_description/meshes/forearm.stl"
+              meshscale="3.5 2 2" /-->
+
+  <m_link_cylinder name="${link_05_name}"
+              origin_rpy="0 0 0" origin_xyz="0 0 0.28"
+              mass="18.056"
+              ixx="0.479" ixy="0" ixz="0"
+              iyy="0.479" iyz="0"
+              izz="0.204"
+              radius="0.05" length="0.5" />
+  
+  <joint name="tp_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.53" />
+    <parent link="${link_05_name}" />
+    <child link="tp" />
+  </joint>
+
+  <link name="tp">
+    <inertial>
+      <mass value="5"/>
+        <origin rpy="0 0 0" xyz="0 0 0" />
+        <inertia ixx="0.3" ixy="0" ixz="0" 
+                 iyy="0.3" iyz="0" 
+                 izz="0.3" />
+    </inertial>
+    <collision>
+        <geometry>
+          <sphere radius="0.1"/>
+        </geometry>
+    </collision>
+    <visual>
+      <geometry>
+        <sphere radius="0.1"/>
+      </geometry>
+    </visual>
+  </link>
+              
+  <!-- END - Robot description -->
+  
+  <gazebo reference="${link_00_name}">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+
+  <gazebo reference="${link_01_name}">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="${link_02_name}">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+  <gazebo reference="${link_03_name}">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+  <gazebo reference="${link_04_name}">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+
+  <gazebo reference="${link_05_name}">
+    <material>Gazebo/Black</material>
+  </gazebo>  
+  
+  <gazebo reference="tp">
+    <material>Gazebo/Green</material>
+  </gazebo>
+
+
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/mrm</robotNamespace>
+    </plugin>
+  </gazebo>
+  
+</robot>

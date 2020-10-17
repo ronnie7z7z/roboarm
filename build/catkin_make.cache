@@ -1,0 +1,2 @@
+mrm_description
+-DCATKIN_DEVEL_PREFIX=/home/ronnie7z/roboarm/devel -DCMAKE_INSTALL_PREFIX=/home/ronnie7z/roboarm/install -G Unix Makefiles
